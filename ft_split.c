@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucimart <lucimart@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: lucimart <lucimart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 15:36:31 by lucimart          #+#    #+#             */
-/*   Updated: 2019/11/13 20:15:42 by lucimart         ###   ########.fr       */
+/*   Updated: 2020/10/01 20:12:24 by lucimart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,12 @@ char			**ft_split(char const *s, char c)
 	size_t		len;
 	size_t		wcount;
 	char		**result;
+	char		*tmp;
 
-	s = ft_strtrim(s, &c);
+	if (!(tmp = (char *)malloc(sizeof(char))))
+		return (0);
+	tmp[0] = c;
+	s = ft_strtrim(s, tmp);
 	if (!s)
 		return (NULL);
 	len = ft_strlen(s);

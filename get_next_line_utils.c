@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucimart <lucimart@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: lucimart <lucimart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 03:08:06 by lucimart          #+#    #+#             */
-/*   Updated: 2019/12/02 21:49:46 by lucimart         ###   ########.fr       */
+/*   Updated: 2020/10/01 19:13:30 by lucimart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <unistd.h>
 
-size_t	ft_strlen(char *str)
+size_t	ft_gnl_strlen(char *str)
 {
 	size_t i;
 
@@ -25,7 +25,7 @@ size_t	ft_strlen(char *str)
 	return (i);
 }
 
-char	*ft_strnew(size_t len)
+char	*ft_gnl_strnew(size_t len)
 {
 	char *str;
 
@@ -35,7 +35,7 @@ char	*ft_strnew(size_t len)
 	return (str);
 }
 
-char	*ft_substr(char *s, unsigned int start, size_t len)
+char	*ft_gnl_substr(char *s, unsigned int start, size_t len)
 {
 	char	*str;
 	size_t	i;
@@ -43,7 +43,7 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 	if (!s || !(str = malloc(sizeof(char) * (len + 1))))
 		return (NULL);
 	i = 0;
-	if (ft_strlen(s) > start)
+	if (ft_gnl_strlen(s) > start)
 		while (i < len)
 		{
 			str[i] = s[start + i];
@@ -53,12 +53,12 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 	return (str);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_gnl_strjoin(char *s1, char *s2)
 {
 	char	*str;
 	size_t	i;
 
-	if (!(str = ft_strnew(ft_strlen(s1) + ft_strlen(s2))))
+	if (!(str = ft_gnl_strnew(ft_gnl_strlen(s1) + ft_gnl_strlen(s2))))
 		return (NULL);
 	i = 0;
 	while (s1 && *s1)

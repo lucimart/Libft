@@ -6,7 +6,7 @@
 #    By: lucimart <lucimart@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/03 17:03:05 by lucimart          #+#    #+#              #
-#    Updated: 2020/10/01 18:16:31 by lucimart         ###   ########.fr        #
+#    Updated: 2020/10/01 19:47:51 by lucimart         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,7 +67,7 @@ SRCS = ft_strdup.c \
 	   get_next_line_utils.c \
 	   get_next_line.c
 HEADER = libft.h get_next_line.h
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -g -Wall -Wextra -Werror
 OBJ = $(SRCS:.c=.o)
 BON_SRC = ft_lstnew_bonus.c \
 		  ft_lstadd_front_bonus.c \
