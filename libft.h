@@ -6,7 +6,7 @@
 /*   By: lucimart <lucimart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 17:48:24 by lucimart          #+#    #+#             */
-/*   Updated: 2020/09/15 19:59:31 by lucimart         ###   ########.fr       */
+/*   Updated: 2020/10/01 18:15:19 by lucimart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,4 +86,5 @@ t_list			*ft_lstmap(t_list *lst, void *(*f)(void *),
 int				in_set(char c, char const *set);
 char			*ft_maxtoa(intmax_t n, int base, int uppercase);
 char			*ft_umaxtoa(uintmax_t n, int base, int uppercase);
+int				get_next_line(int fd, char **line);
 #endif
