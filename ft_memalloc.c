@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memalloc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucimart <lucimart@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: lucimart <lucimart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 19:05:56 by lucimart          #+#    #+#             */
-/*   Updated: 2019/11/06 23:09:28 by lucimart         ###   ########.fr       */
+/*   Updated: 2020/10/04 15:53:55 by lucimart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	*ft_memalloc(size_t size)
 {
 	void *str;
 
-	if (!(str = (void *)malloc(sizeof(*str) * size)))
+	if (!(str = (void *)malloc(sizeof(char) * size)))
 		return (NULL);
 	ft_bzero(str, size);
 	return (str);

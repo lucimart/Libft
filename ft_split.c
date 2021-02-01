@@ -6,7 +6,7 @@
 /*   By: lucimart <lucimart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 15:36:31 by lucimart          #+#    #+#             */
-/*   Updated: 2020/10/01 20:12:24 by lucimart         ###   ########.fr       */
+/*   Updated: 2020/10/04 15:13:19 by lucimart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,10 @@ char			**ft_split(char const *s, char c)
 	char		*tmp;
 
 	if (!(tmp = (char *)malloc(sizeof(char))))
-		return (0);
+		return (NULL);
 	tmp[0] = c;
 	s = ft_strtrim(s, tmp);
+	free(tmp);
 	if (!s)
 		return (NULL);
 	len = ft_strlen(s);

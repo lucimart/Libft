@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucimart <lucimart@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: lucimart <lucimart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 00:31:26 by lucimart          #+#    #+#             */
-/*   Updated: 2019/11/05 18:03:36 by lucimart         ###   ########.fr       */
+/*   Updated: 2020/10/04 15:33:24 by lucimart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*ft_strdup(const char *s)
 	char	*dup;
 	size_t	i;
 
-	if (!(dup = ft_strnew(ft_strlen(s))) || !s)
+	if (!s || !(dup = ft_strnew(ft_strlen(s))))
 		return (NULL);
 	i = -1;
 	while (s[++i])
