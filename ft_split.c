@@ -6,7 +6,7 @@
 /*   By: lucimart <lucimart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 15:36:31 by lucimart          #+#    #+#             */
-/*   Updated: 2020/10/04 15:13:19 by lucimart         ###   ########.fr       */
+/*   Updated: 2021/02/02 01:53:34 by lucimart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,33 +35,30 @@ static size_t	count_words(const char *s, char c, size_t len)
 	return (words);
 }
 
-static char		**split_aux(char const *s, char c, size_t len, size_t wcount)
+static void		split_aux(char **result, char const *s, char c, size_t len)
 {
-	char		**result;
-	char		**res;
+	int			i;
 	size_t		start;
 	size_t		end;
 
 	start = 0;
 	end = 0;
-	if (!(result = (char **)malloc(sizeof(char *) * (wcount + 1))))
-		return (NULL);
-	res = result;
+	i = 0;
 	while (end < len)
 		if (s[end] == c || end + 1 == len)
 		{
 			end = (end + 1 == len ? len : end);
-			if (!(*result = ft_substr(s, start, (end - start))))
-				return (NULL);
-			result++;
+			if (!(result[i] = ft_substr(s, start, (end - start))))
+				return ;
+			i++;
 			while (s[end] == c)
 				end++;
 			start = end;
 		}
 		else
 			end++;
-	*result = NULL;
-	return (res);
+	result[i] = ft_strnew(1);
+	result[i] = '\0';
 }
 
 char			**ft_split(char const *s, char c)
@@ -69,17 +66,16 @@ char			**ft_split(char const *s, char c)
 	size_t		len;
 	size_t		wcount;
 	char		**result;
-	char		*tmp;
+	char		tmp[1];
 
-	if (!(tmp = (char *)malloc(sizeof(char))))
-		return (NULL);
 	tmp[0] = c;
 	s = ft_strtrim(s, tmp);
-	free(tmp);
 	if (!s)
 		return (NULL);
 	len = ft_strlen(s);
 	wcount = count_words(s, c, len);
-	result = split_aux(s, c, len, wcount);
+	if (!(result = (char **)malloc(sizeof(char *) * (wcount + 1))))
+		return (NULL);
+	split_aux(result, s, c, len);
 	return (result);
 }
