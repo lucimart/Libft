@@ -6,7 +6,7 @@
 /*   By: lucimart <lucimart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 03:07:56 by lucimart          #+#    #+#             */
-/*   Updated: 2020/10/01 19:11:42 by lucimart         ###   ########.fr       */
+/*   Updated: 2021/02/04 21:05:43 by lucimart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int		free_and_ret(char **str, int ret)
 	if (*str)
 	{
 		free(*str);
-		*str = 0;
+		*str = NULL;
 	}
 	return (ret);
 }
