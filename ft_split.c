@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucimart <lucimart@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lucimart <lucimart@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 15:36:31 by lucimart          #+#    #+#             */
-/*   Updated: 2021/02/04 21:00:53 by lucimart         ###   ########.fr       */
+/*   Updated: 2022/09/13 22:57:57 by lucimart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,18 @@ static size_t	count_words(const char *s, char c, size_t len)
 	return (words);
 }
 
-static void		split_aux(char **result, char *s, char c, size_t len)
+int	end_handler(int len, int end)
+{
+	int	ret;
+
+	if (len)
+		ret = (end + 1 == len);
+	else
+		ret = (end + 1 == end);
+	return (ret);
+}
+
+static void	split_aux(char **result, char *s, char c, size_t len)
 {
 	int			i;
 	size_t		start;
@@ -45,10 +56,12 @@ static void		split_aux(char **result, char *s, char c, size_t len)
 	end = 0;
 	i = 0;
 	while (end < len)
+	{
 		if (s[end] == c || end + 1 == len)
 		{
-			end = (end + 1 == len ? len : end);
-			if (!(result[i] = ft_substr(s, start, (end - start))))
+			end = end_handler(len, end);
+			result[i] = ft_substr(s, start, (end - start));
+			if (!result[i])
 				return ;
 			i++;
 			while (s[end] == c)
@@ -57,10 +70,11 @@ static void		split_aux(char **result, char *s, char c, size_t len)
 		}
 		else
 			end++;
+	}
 	result[i] = NULL;
 }
 
-char			**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	size_t		len;
 	size_t		wcount;
@@ -74,7 +88,8 @@ char			**ft_split(char const *s, char c)
 		return (NULL);
 	len = ft_strlen(str);
 	wcount = count_words(str, c, len);
-	if (!(result = (char **)malloc(sizeof(char *) * (wcount + 1))))
+	result = (char **)malloc(sizeof(char *) * (wcount + 1));
+	if (!result)
 		return (NULL);
 	split_aux(result, str, c, len);
 	free(str);

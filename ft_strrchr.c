@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucimart <lucimart@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: lucimart <lucimart@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 03:03:51 by lucimart          #+#    #+#             */
-/*   Updated: 2019/11/06 16:58:02 by lucimart         ###   ########.fr       */
+/*   Updated: 2022/09/13 22:43:48 by lucimart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*ft_strrchr(const char *s, int c)
 {
-	size_t len;
+	size_t	len;
 
 	len = ft_strlen(s);
 	while (s[len] != (char)c && len)

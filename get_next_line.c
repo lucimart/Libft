@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucimart <lucimart@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lucimart <lucimart@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 03:07:56 by lucimart          #+#    #+#             */
-/*   Updated: 2021/02/04 21:05:43 by lucimart         ###   ########.fr       */
+/*   Updated: 2022/09/13 23:04:42 by lucimart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 static ssize_t	nl_index(char *str)
 {
-	size_t i;
+	size_t	i;
 
 	i = -1;
 	while (str && str[++i])
@@ -24,7 +24,7 @@ static ssize_t	nl_index(char *str)
 	return (-1);
 }
 
-static int		free_and_ret(char **str, int ret)
+static int	free_and_ret(char **str, int ret)
 {
 	if (*str)
 	{
@@ -34,24 +34,30 @@ static int		free_and_ret(char **str, int ret)
 	return (ret);
 }
 
-int				gnl_aux(ssize_t len_rd, char **line, char **cache, ssize_t nl_i)
+int	gnl_aux(ssize_t len_rd, char **line, char **cache, ssize_t nl_i)
 {
 	char	*aux;
 	int		to_ret;
 
-	if (len_rd == 0 && (!*cache || !**cache) && (*line = ft_gnl_strnew(0)))
+	if (len_rd == 0 && (!*cache || !**cache))
+	{
+		*line = ft_gnl_strnew(0);
 		return (free_and_ret(cache, 0));
+	}
 	if (nl_i == -1)
 	{
-		if (!(*line = ft_gnl_substr(*cache, 0, ft_gnl_strlen(*cache))))
+		*line = ft_gnl_substr(*cache, 0, ft_gnl_strlen(*cache));
+		if (!line)
 			return (free_and_ret(cache, -1));
 		to_ret = 0;
 		aux = 0;
 	}
 	else
 	{
-		if (!(*line = ft_gnl_substr(*cache, 0, nl_i)) ||
-			!(aux = ft_gnl_substr(*cache, nl_i + 1, ft_gnl_strlen(*cache) - 1)))
+		*line = ft_gnl_substr(*cache, 0, nl_i);
+		aux = ft_gnl_substr(*cache, nl_i + 1, ft_gnl_strlen(*cache) - 1);
+		if (!line
+			|| !aux)
 			return (free_and_ret(cache, -1));
 		to_ret = 1;
 	}
@@ -60,7 +66,7 @@ int				gnl_aux(ssize_t len_rd, char **line, char **cache, ssize_t nl_i)
 	return (to_ret);
 }
 
-int				get_next_line(int fd, char **line)
+int	get_next_line(int fd, char **line)
 {
 	char		buf[32 + 1];
 	ssize_t		len_read;
@@ -69,14 +75,17 @@ int				get_next_line(int fd, char **line)
 
 	if (!line || fd < 0 || 32 < 1)
 		return (free_and_ret(&cache, -1));
-	while ((len_read = read(fd, buf, 32)) > 0)
+	len_read = read(fd, buf, 32);
+	while (len_read > 0)
 	{
 		buf[len_read] = '\0';
-		if (!(aux = ft_gnl_strjoin(cache, buf)))
+		aux = ft_gnl_strjoin(cache, buf);
+		if (!aux)
 			return (free_and_ret(&cache, -1));
 		free_and_ret(&cache, 0);
 		if (nl_index(cache = aux) != -1)
 			break ;
+		len_read = read(fd, buf, 32);
 	}
 	if (len_read < 0)
 		return (free_and_ret(&cache, -1));

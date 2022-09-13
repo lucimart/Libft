@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucimart <lucimart@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: lucimart <lucimart@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 21:43:58 by lucimart          #+#    #+#             */
-/*   Updated: 2019/11/06 18:38:22 by lucimart         ###   ########.fr       */
+/*   Updated: 2022/09/13 22:21:29 by lucimart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,16 @@ t_list	*ft_lstnew(void *content)
 	t_list	*node;
 	size_t	content_len;
 
-	if (!(node = (t_list *)malloc(sizeof(t_list))))
+	node = (t_list *)malloc(sizeof(t_list));
+	if (!node)
 		return (NULL);
 	if (!content)
 		node->content = NULL;
 	else
 	{
 		content_len = ft_strlen((char *)content);
-		if (!(node->content = (void *)malloc(content_len)))
+		node->content = (void *)malloc(content_len);
+		if (!node)
 			return (NULL);
 		ft_memmove(node->content, content, content_len);
 	}

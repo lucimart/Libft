@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucimart <lucimart@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: lucimart <lucimart@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 12:48:11 by lucimart          #+#    #+#             */
-/*   Updated: 2019/11/06 23:08:30 by lucimart         ###   ########.fr       */
+/*   Updated: 2022/09/13 22:18:53 by lucimart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	nbr_digits(int n)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (n == 0)
@@ -29,13 +29,14 @@ static int	nbr_digits(int n)
 	return (i);
 }
 
-char		*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	char	*str;
 	int		len;
 
 	len = nbr_digits(n);
-	if (!(str = ft_strnew(len--)))
+	str = ft_strnew(len--);
+	if (!str)
 		return (NULL);
 	if (n == -2147483648)
 		return (ft_strdup("-2147483648"));

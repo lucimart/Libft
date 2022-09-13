@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_umaxtoa.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucimart <lucimart@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lucimart <lucimart@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 12:48:11 by lucimart          #+#    #+#             */
-/*   Updated: 2020/09/15 20:56:08 by lucimart         ###   ########.fr       */
+/*   Updated: 2022/09/13 22:46:19 by lucimart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	nbr_digits(uintmax_t n, int base)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (n == 0)
@@ -24,20 +24,26 @@ static int	nbr_digits(uintmax_t n, int base)
 	return (i);
 }
 
-char		*ft_umaxtoa(uintmax_t n, int base, int uppercase)
+char	*ft_umaxtoa(uintmax_t n, int base, int uppercase)
 {
 	char	*str;
 	int		len;
 
 	len = nbr_digits(n, base);
-	if (!(str = ft_strnew(len--)))
+	str = ft_strnew(len--);
+	if (!str)
 		return (NULL);
 	if (n == 0)
 		str[0] = '0';
 	while (n)
 	{
 		if (base > 10 && (n % base >= 10))
-			str[len--] = (n % base) - 10 + (uppercase ? 'A' : 'a');
+		{
+			if (uppercase)
+				str[len--] = (n % base) - 10 + 'A';
+			else
+				str[len--] = (n % base) - 10 + 'a';
+		}
 		else
 			str[len--] = (n % base) + '0';
 		n /= base;

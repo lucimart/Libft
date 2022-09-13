@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucimart <lucimart@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: lucimart <lucimart@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 22:12:44 by lucimart          #+#    #+#             */
-/*   Updated: 2019/11/06 22:59:07 by lucimart         ###   ########.fr       */
+/*   Updated: 2022/09/13 22:42:32 by lucimart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ char	*ft_strmap(char const *s, char (*f)(char))
 	if (s && f)
 	{
 		i = -1;
-		if (!(fresh = ft_strnew(ft_strlen(s))))
+		fresh = ft_strnew(ft_strlen(s));
+		if (!fresh)
 			return (NULL);
 		while (s[++i])
 			fresh[i] = f(s[i]);

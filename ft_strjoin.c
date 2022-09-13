@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucimart <lucimart@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: lucimart <lucimart@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 23:31:35 by lucimart          #+#    #+#             */
-/*   Updated: 2019/11/06 22:55:44 by lucimart         ###   ########.fr       */
+/*   Updated: 2022/09/13 22:42:04 by lucimart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	char	*str;
 	size_t	i;
 
-	if (!s1 || !s2 || !(str = ft_strnew(ft_strlen(s1) + ft_strlen(s2))))
+	str = ft_strnew(ft_strlen(s1) + ft_strlen(s2));
+	if (!s1 || !s2 || !str)
 		return (NULL);
 	i = 0;
 	while (*s1)
