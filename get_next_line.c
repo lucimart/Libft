@@ -6,7 +6,7 @@
 /*   By: lucimart <lucimart@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 03:07:56 by lucimart          #+#    #+#             */
-/*   Updated: 2022/09/19 16:03:50 by lucimart         ###   ########.fr       */
+/*   Updated: 2022/09/19 18:30:39 by lucimart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ static int	free_and_ret(char **str, int ret)
 	return (ret);
 }
 
-int	get_line_and_aux(char **line, char **cache, ssize_t nl_i, char *aux)
+int	get_line_and_aux(char **line, char **cache, ssize_t nl_i, char **aux)
 {
 	*line = ft_gnl_substr(*cache, 0, nl_i);
-	aux = ft_gnl_substr(*cache, nl_i + 1, ft_gnl_strlen(*cache) - 1);
-	if (!line || !aux)
+	*aux = ft_gnl_substr(*cache, nl_i + 1, ft_gnl_strlen(*cache) - 1);
+	if (!line || !*aux)
 		return (free_and_ret(cache, -1));
 	return (1);
 }
@@ -62,7 +62,7 @@ int	gnl_aux(ssize_t len_rd, char **line, char **cache, ssize_t nl_i)
 		aux = 0;
 	}
 	else
-		to_ret = get_line_and_aux(line, cache, nl_i, aux);
+		to_ret = get_line_and_aux(line, cache, nl_i, &aux);
 	free_and_ret(cache, 0);
 	*cache = aux;
 	return (to_ret);
