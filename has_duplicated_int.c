@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstiter_bonus.c                                 :+:      :+:    :+:   */
+/*   has_duplicated_int.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucimart <lucimart@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/06 01:11:12 by lucimart          #+#    #+#             */
-/*   Updated: 2022/09/13 22:19:46 by lucimart         ###   ########.fr       */
+/*   Created: 2022/10/08 21:33:39 by lucimart          #+#    #+#             */
+/*   Updated: 2022/10/08 21:33:48 by lucimart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstiter(t_list *lst, void (*f)(void *))
+/*
+* returns true if array has no unique values
+*/
+int	has_duplicated_int(int *arr, int arr_len)
 {
-	t_list	*node;
+	int	i;
 
-	if (!lst || !f)
-		return ;
-	node = lst;
-	while (node)
+	i = 0;
+	while (i < arr_len)
 	{
-		(*f)(node->content);
-		node = node->next;
+		if (amount_of_int_in_arr(arr, arr_len, arr[i]) > 1)
+			return (1);
+		i++;
 	}
+	return (0);
 }

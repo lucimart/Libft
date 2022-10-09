@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
+/*   ft_lstnew.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucimart <lucimart@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/06 00:18:36 by lucimart          #+#    #+#             */
-/*   Updated: 2022/09/13 22:21:39 by lucimart         ###   ########.fr       */
+/*   Created: 2019/11/05 21:43:58 by lucimart          #+#    #+#             */
+/*   Updated: 2022/09/13 22:21:29 by lucimart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_lstsize(t_list *lst)
+t_list	*ft_lstnew(void *content)
 {
-	int		size;
 	t_list	*node;
+	size_t	content_len;
 
-	node = lst;
-	size = 0;
+	node = (t_list *)malloc(sizeof(t_list));
 	if (!node)
-		return (0);
-	while (node)
+		return (NULL);
+	if (!content)
+		node->content = NULL;
+	else
 	{
-		size++;
-		node = node->next;
+		content_len = ft_strlen((char *)content);
+		node->content = (void *)malloc(content_len);
+		if (!node)
+			return (NULL);
+		ft_memmove(node->content, content, content_len);
 	}
-	return (size);
+	node->next = NULL;
+	return (node);
 }

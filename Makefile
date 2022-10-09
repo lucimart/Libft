@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lucimart <lucimart@student.42.fr>          +#+  +:+       +#+         #
+#    By: lucimart <lucimart@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/03 17:03:05 by lucimart          #+#    #+#              #
-#    Updated: 2020/10/01 19:47:51 by lucimart         ###   ########.fr        #
+#    Updated: 2022/10/08 21:45:32 by lucimart         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,19 +65,26 @@ SRCS = ft_strdup.c \
 	   ft_umaxtoa.c \
 	   ft_strlcat.c \
 	   get_next_line_utils.c \
-	   get_next_line.c
+	   get_next_line.c \
+	   strtoint.c \
+	   includes_int.c \
+	   has_duplicated_int.c \
+	   amount_of_int_in_arr.c \
+	   double_pointer_len.c \
+	   strarrjoin.c \
+	   str_arr_to_int_arr.c
 HEADER = libft.h get_next_line.h
 FLAGS = -g -Wall -Wextra -Werror
 OBJ = $(SRCS:.c=.o)
-BON_SRC = ft_lstnew_bonus.c \
-		  ft_lstadd_front_bonus.c \
-		  ft_lstsize_bonus.c \
-		  ft_lstlast_bonus.c \
-		  ft_lstadd_back_bonus.c \
-		  ft_lstdelone_bonus.c \
-		  ft_lstclear_bonus.c \
-		  ft_lstiter_bonus.c \
-		  ft_lstmap_bonus.c
+BON_SRC = ft_lstnew.c \
+		  ft_lstadd_front.c \
+		  ft_lstsize.c \
+		  ft_lstlast.c \
+		  ft_lstadd_back.c \
+		  ft_lstdelone.c \
+		  ft_lstclear.c \
+		  ft_lstiter.c \
+		  ft_lstmap.c
 BON_OBJ = $(SRCS:.c=.o) $(BON_SRC:.c=.o)
 all: $(NAME)
 

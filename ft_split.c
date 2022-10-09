@@ -6,7 +6,7 @@
 /*   By: lucimart <lucimart@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 15:36:31 by lucimart          #+#    #+#             */
-/*   Updated: 2022/09/13 22:57:57 by lucimart         ###   ########.fr       */
+/*   Updated: 2022/10/08 16:21:13 by lucimart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,25 +39,25 @@ int	end_handler(int len, int end)
 {
 	int	ret;
 
-	if (len)
-		ret = (end + 1 == len);
+	if ((end + 1) == len)
+		ret = len;
 	else
-		ret = (end + 1 == end);
+		ret = end;
 	return (ret);
 }
 
 static void	split_aux(char **result, char *s, char c, size_t len)
 {
-	int			i;
-	size_t		start;
-	size_t		end;
+	int		i;
+	size_t	start;
+	size_t	end;
 
 	start = 0;
 	end = 0;
 	i = 0;
 	while (end < len)
 	{
-		if (s[end] == c || end + 1 == len)
+		if (s[end] == c || (end + 1) == len)
 		{
 			end = end_handler(len, end);
 			result[i] = ft_substr(s, start, (end - start));
@@ -76,11 +76,11 @@ static void	split_aux(char **result, char *s, char c, size_t len)
 
 char	**ft_split(char const *s, char c)
 {
-	size_t		len;
-	size_t		wcount;
-	char		**result;
-	char		tmp[1];
-	char		*str;
+	size_t	len;
+	size_t	wcount;
+	char	**result;
+	char	tmp[1];
+	char	*str;
 
 	tmp[0] = c;
 	str = ft_strtrim(s, tmp);

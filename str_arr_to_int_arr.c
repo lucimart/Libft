@@ -1,37 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
+/*   str_arr_to_int_arr.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucimart <lucimart@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/06 01:19:23 by lucimart          #+#    #+#             */
-/*   Updated: 2022/09/13 22:20:26 by lucimart         ###   ########.fr       */
+/*   Created: 2022/10/08 21:44:56 by lucimart          #+#    #+#             */
+/*   Updated: 2022/10/08 21:45:36 by lucimart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
+/*
+* returns 1 if op was succesful, 0 if was not (ex: str int was composed
+* of characters or overflowed)
+*/
+int	str_arr_to_int_arr(char **str_arr, int str_arr_len, int **int_arr_ptr)
 {
-	t_list	*list;
-	t_list	*node;
-	t_list	*new_list;
+	char	*ptr;
+	int		i;
+	int		nbr;
+	int		*int_arr;
 
-	if (!lst || !f)
-		return (NULL);
-	list = lst;
-	new_list = NULL;
-	while (list)
+	int_arr = *int_arr_ptr;
+	i = 0;
+	while (i < str_arr_len)
 	{
-		node = ft_lstnew(f(list->content));
-		if (!node)
-		{
-			ft_lstclear(&node, del);
-			return (NULL);
-		}
-		ft_lstadd_back(&new_list, node);
-		list = list->next;
+		nbr = strtoint(str_arr[i], &ptr);
+		if (*ptr)
+			return (0);
+		int_arr[i] = nbr;
+		i++;
 	}
-	return (new_list);
+	return (1);
 }
