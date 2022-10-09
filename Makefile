@@ -6,7 +6,7 @@
 #    By: lucimart <lucimart@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/03 17:03:05 by lucimart          #+#    #+#              #
-#    Updated: 2022/10/09 13:34:15 by lucimart         ###   ########.fr        #
+#    Updated: 2022/10/09 20:09:52 by lucimart         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,7 +75,11 @@ SRCS = ft_strdup.c \
 	   str_arr_to_int_arr.c \
 	   is_sorted.c \
 	   smallest_int.c \
-	   biggest_int.c
+	   biggest_int.c \
+	   smallest_int_index.c \
+	   biggest_int_index.c \
+	   free_str_arr.c \
+	   fill_int_arr.c
 HEADER = libft.h get_next_line.h
 FLAGS = -g -Wall -Wextra -Werror
 OBJ = $(SRCS:.c=.o)

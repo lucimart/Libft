@@ -6,7 +6,7 @@
 /*   By: lucimart <lucimart@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 17:48:24 by lucimart          #+#    #+#             */
-/*   Updated: 2022/10/09 13:33:55 by lucimart         ###   ########.fr       */
+/*   Updated: 2022/10/09 20:09:40 by lucimart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
+void				fill_int_arr(int **arr_ptr, int len, int filler);
+void				free_str_arr(char **arr);
+int					smallest_int_index(int *arr, int len);
+int					biggest_int_index(int *arr, int len);
 int					smallest_int(int *arr, int len);
 int					biggest_int(int *arr, int len);
 int					is_sorted(int *arr, int len);
